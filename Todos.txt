@@ -1,8 +1,13 @@
-===================
+====================
 Goals for this meet:
-===================
+====================
 
--setup github
--design form
--port over old classes
--divvy up work
+-setup github 		= DONE
+-design form		= DONE
+-port over old classes	= DONE
+-add in new text files	= DONE
+-divvy up work		= DONE
+
+
+- Post/Comments need attributes/Properties written to accomodate Silver, Gold, Plat awards = DONE
+- readData() will need changes to posts/subreddit reading to accomodate this as well

@@ -1,7 +1,7 @@
 ﻿
 namespace wolfPack_Assign3
 {
-    partial class Form1
+    partial class wolfPack_Assign3
     {
         /// <summary>
         /// Required designer variable.
@@ -417,7 +417,7 @@ namespace wolfPack_Assign3
             this.thresholdQuery.Text = "Query";
             this.thresholdQuery.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // wolfPack_Assign3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -448,8 +448,8 @@ namespace wolfPack_Assign3
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "wolfPack_Assign3";
+            this.Text = "Welcome to Reddit\'s Query System";
             this.subPanel.ResumeLayout(false);
             this.subPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
