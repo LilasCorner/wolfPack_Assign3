@@ -46,6 +46,13 @@ namespace wolfPack_Assign3
             this.avgUser = new System.Windows.Forms.RadioButton();
             this.highUser = new System.Windows.Forms.RadioButton();
             this.lowUser = new System.Windows.Forms.RadioButton();
+            this.silverAward = new System.Windows.Forms.CheckBox();
+            this.goldAward = new System.Windows.Forms.CheckBox();
+            this.platAward = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.subComboBox = new System.Windows.Forms.ComboBox();
+            this.userComboBox = new System.Windows.Forms.ComboBox();
             this.subPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -90,9 +97,9 @@ namespace wolfPack_Assign3
             this.label4.ForeColor = System.Drawing.Color.OrangeRed;
             this.label4.Location = new System.Drawing.Point(15, 375);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(215, 24);
+            this.label4.Size = new System.Drawing.Size(283, 24);
             this.label4.TabIndex = 3;
-            this.label4.Text = "PostScore Per Subreddit";
+            this.label4.Text = "Total Awards within a Subreddit";
             // 
             // label5
             // 
@@ -231,11 +238,86 @@ namespace wolfPack_Assign3
             this.lowUser.Text = "Lowest";
             this.lowUser.UseVisualStyleBackColor = true;
             // 
+            // silverAward
+            // 
+            this.silverAward.AutoSize = true;
+            this.silverAward.Location = new System.Drawing.Point(19, 411);
+            this.silverAward.Name = "silverAward";
+            this.silverAward.Size = new System.Drawing.Size(56, 19);
+            this.silverAward.TabIndex = 11;
+            this.silverAward.Text = "Silver";
+            this.silverAward.UseVisualStyleBackColor = true;
+            // 
+            // goldAward
+            // 
+            this.goldAward.AutoSize = true;
+            this.goldAward.Location = new System.Drawing.Point(19, 436);
+            this.goldAward.Name = "goldAward";
+            this.goldAward.Size = new System.Drawing.Size(52, 19);
+            this.goldAward.TabIndex = 12;
+            this.goldAward.Text = "Gold";
+            this.goldAward.UseVisualStyleBackColor = true;
+            // 
+            // platAward
+            // 
+            this.platAward.AutoSize = true;
+            this.platAward.Location = new System.Drawing.Point(19, 461);
+            this.platAward.Name = "platAward";
+            this.platAward.Size = new System.Drawing.Size(75, 19);
+            this.platAward.TabIndex = 13;
+            this.platAward.Text = "Platinum";
+            this.platAward.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.150944F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label8.Location = new System.Drawing.Point(110, 411);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(75, 19);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Subreddit";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.150944F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label9.Location = new System.Drawing.Point(15, 532);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 19);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "User";
+            // 
+            // subComboBox
+            // 
+            this.subComboBox.FormattingEnabled = true;
+            this.subComboBox.Location = new System.Drawing.Point(119, 445);
+            this.subComboBox.Name = "subComboBox";
+            this.subComboBox.Size = new System.Drawing.Size(204, 21);
+            this.subComboBox.TabIndex = 16;
+            // 
+            // userComboBox
+            // 
+            this.userComboBox.FormattingEnabled = true;
+            this.userComboBox.Location = new System.Drawing.Point(19, 554);
+            this.userComboBox.Name = "userComboBox";
+            this.userComboBox.Size = new System.Drawing.Size(304, 21);
+            this.userComboBox.TabIndex = 17;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(956, 719);
+            this.Controls.Add(this.userComboBox);
+            this.Controls.Add(this.subComboBox);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.platAward);
+            this.Controls.Add(this.goldAward);
+            this.Controls.Add(this.silverAward);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.subPanel);
             this.Controls.Add(this.specificDatePicker);
@@ -277,6 +359,13 @@ namespace wolfPack_Assign3
         private System.Windows.Forms.RadioButton avgUser;
         private System.Windows.Forms.RadioButton highUser;
         private System.Windows.Forms.RadioButton lowUser;
+        private System.Windows.Forms.CheckBox silverAward;
+        private System.Windows.Forms.CheckBox goldAward;
+        private System.Windows.Forms.CheckBox platAward;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox subComboBox;
+        private System.Windows.Forms.ComboBox userComboBox;
     }
 }
 
