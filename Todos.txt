@@ -1,0 +1,8 @@
+===================
+Goals for this meet:
+===================
+
+-setup github
+-design form
+-port over old classes
+-divvy up work
