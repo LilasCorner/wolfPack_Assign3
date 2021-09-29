@@ -10,4 +10,4 @@ Goals for this meet:
 
 
 - Post/Comments need attributes/Properties written to accomodate Silver, Gold, Plat awards = DONE
-- readData() will need changes to posts/subreddit reading to accomodate this as well
+- readData() will need changes to posts/subreddit reading to accomodate this as well = DONE
