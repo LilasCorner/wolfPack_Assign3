@@ -29,7 +29,7 @@ namespace wolfPack_Assign3
         uint indent;
         readonly DateTime timeStamp = new DateTime();
         List<Comment> commentReplies = new List<Comment>();
-        private int[] awards;
+        private int[] awards = new int[3];
 
 
         //default constructor
@@ -55,14 +55,9 @@ namespace wolfPack_Assign3
 
             id = Convert.ToUInt32(tokens[wolfPack_Assign3.COM_INDEX - 15]);
 
-
-
             authorID = Convert.ToUInt32(tokens[wolfPack_Assign3.COM_INDEX - 14]);
 
-
             Content = tokens[wolfPack_Assign3.COM_INDEX - 13];
-
-
 
             parentID = Convert.ToUInt32(tokens[wolfPack_Assign3.COM_INDEX - 12]);
 
@@ -70,9 +65,9 @@ namespace wolfPack_Assign3
             DownVotes = Convert.ToUInt32(tokens[wolfPack_Assign3.COM_INDEX - 10]);
             timeStamp = new DateTime(Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 9]), Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 8]), Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 7]), Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 6]), Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 5]), Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 4]));
 
-            awards[0] = Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 3]); //silver
-            awards[1] = Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 2]); //gold
-            awards[2] = Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 1]); //plat
+            this[0] = Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 3]); //silver
+            this[1] = Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 2]); //gold
+            this[2] = Convert.ToInt32(tokens[wolfPack_Assign3.COM_INDEX - 1]); //plat
         }
 
         //new comment constructor
@@ -87,9 +82,9 @@ namespace wolfPack_Assign3
             UpVotes = 1;
             DownVotes = 0;
             timeStamp = DateTime.Now;
-            awards[0] = 0; //silver
-            awards[1] = 0; //gold
-            awards[2] = 0; //plat
+            this[0] = 0; //silver
+            this[1] = 0; //gold
+            this[2] = 0; //plat
         }
 
         //adds new comment to commentReplies List

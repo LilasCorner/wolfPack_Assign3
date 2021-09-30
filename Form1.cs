@@ -55,6 +55,7 @@ namespace wolfPack_Assign3
         public wolfPack_Assign3()
         {
             InitializeComponent();
+            readData();
         }
 
         public void readData()
@@ -332,6 +333,85 @@ namespace wolfPack_Assign3
         }
 
 
+        public void endQueryMsg()
+        {
+            outputBox.AppendText("\n*************** END OF QUERY RESULTS ***************\n");
+        }
+
+        private void thresholdQuery_Click(object sender, EventArgs e)
+        {
+
+            outputBox.Clear();
+
+
+            var greatPostQ =
+               from N in postMap
+               where N.Value.Score > Convert.ToDouble(numericUpDown.Value)
+               select N.Key;
+
+            var lowPostQ =
+               from N in postMap
+               where N.Value.Score < Convert.ToDouble(numericUpDown.Value)
+               select N.Key;
+
+            var greatTopComQ =
+                from N in postMap.Values
+                from M in N.PostComments
+                where M.Score > Convert.ToDouble(numericUpDown.Value)
+                select M;
+
+            var lowTopComQ =
+                from N in postMap.Values
+                from M in N.PostComments
+                where M.Score < Convert.ToDouble(numericUpDown.Value)
+                select M;
+
+            var greatComQ =
+                from N in postMap.Values
+                from M in N.PostComments
+                from L in M.CommentReplies
+                where L.Score < Convert.ToDouble(numericUpDown.Value)
+                select L;
+
+            var lowComQ =
+                from N in postMap.Values
+                from M in N.PostComments
+                from L in M.CommentReplies
+                where L.Score > Convert.ToDouble(numericUpDown.Value)
+                select L;
+
+
+            if ( (lessThanRadioButton.Checked || greaterThanRadioButton.Checked) && numericUpDown.Value != 0)
+            {
+
+                
+
+                if (lessThanRadioButton.Checked)
+                {
+                    outputBox.AppendText("List of Posts/Comments with a Score Less than or Equal to " + numericUpDown.Value + ":" + Environment.NewLine);
+                    outputBox.AppendText("--------------------------------------" + Environment.NewLine);
+                    outputBox.AppendText("Posts:" + Environment.NewLine);
+
+                    foreach (var item in lowPostQ)
+                    {
+                        outputBox.AppendText(postMap[item].ToStringShort() + Environment.NewLine);
+                    }
+
+                }
+                else
+                {
+                    outputBox.AppendText("List of Posts/Comments with a Score Greater than or Equal to " + numericUpDown.Value + ":\n");
+                    outputBox.AppendText("--------------------------------------");
+
+                }
+
+            }
+            else
+            {
+                outputBox.AppendText("Please make sure a radio button is selected, and a point value is chosen.\n");
+                return;
+            }
+        }
     }
 
 }

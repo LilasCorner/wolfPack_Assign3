@@ -29,7 +29,7 @@ namespace wolfPack_Assign3
         private uint downVotes;
         private uint weight;
         private readonly DateTime timeStamp = new DateTime();
-        private int[] awards;
+        private int[] awards = new int[3];
 
 
         private Post[] _post;
@@ -48,9 +48,9 @@ namespace wolfPack_Assign3
             UpVotes = 1;
             DownVotes = 0;
             Weight = 0;
-            awards[0] = 0; //silver
-            awards[1] = 0; //gold
-            awards[2] = 0; //plat
+            this[0] = 0; //silver
+            this[1] = 0; //gold
+            this[2] = 0; //plat
         }
 
         public Post(string _title, uint _authorId, string _postContent, uint _subHome)
@@ -66,9 +66,9 @@ namespace wolfPack_Assign3
             DownVotes = 0;
             Weight = 0;
 
-            awards[0] = 0; //silver
-            awards[1] = 0; //gold
-            awards[2] = 0; //plat
+            this[0] = 0; //silver
+            this[1] = 0; //gold
+            this[2] = 0; //plat
         }
 
         public Post(params string[] tokens)
@@ -113,9 +113,9 @@ namespace wolfPack_Assign3
             timeStamp = new DateTime(Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 9]), Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 8]), Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 7]), Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 6]), Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 5]), Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 4]));
 
 
-            awards[0] = Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 3]); //silver
-            awards[1] = Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 2]); //gold
-            awards[2] = Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 1]); //plat
+            this[0] = Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 3]); //silver
+            this[1] = Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 2]); //gold
+            this[2] = Convert.ToInt32(tokens[wolfPack_Assign3.POST_INDEX - 1]); //plat
 
         }
 

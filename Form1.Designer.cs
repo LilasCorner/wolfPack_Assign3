@@ -36,12 +36,12 @@ namespace wolfPack_Assign3
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.outputBox = new System.Windows.Forms.TextBox();
             this.specificDatePicker = new System.Windows.Forms.DateTimePicker();
             this.subPanel = new System.Windows.Forms.Panel();
-            this.lowSub = new System.Windows.Forms.RadioButton();
-            this.highSub = new System.Windows.Forms.RadioButton();
             this.avgSub = new System.Windows.Forms.RadioButton();
+            this.highSub = new System.Windows.Forms.RadioButton();
+            this.lowSub = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.avgUser = new System.Windows.Forms.RadioButton();
             this.highUser = new System.Windows.Forms.RadioButton();
@@ -54,8 +54,8 @@ namespace wolfPack_Assign3
             this.subComboBox = new System.Windows.Forms.ComboBox();
             this.userComboBox = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lessThanRadioButton = new System.Windows.Forms.RadioButton();
             this.greaterThanRadioButton = new System.Windows.Forms.RadioButton();
+            this.lessThanRadioButton = new System.Windows.Forms.RadioButton();
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.dateQuery = new System.Windows.Forms.Button();
             this.subQuery = new System.Windows.Forms.Button();
@@ -76,7 +76,7 @@ namespace wolfPack_Assign3
             this.label1.ForeColor = System.Drawing.Color.OrangeRed;
             this.label1.Location = new System.Drawing.Point(15, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(235, 24);
+            this.label1.Size = new System.Drawing.Size(227, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Posts From a Specific Date";
             // 
@@ -87,7 +87,7 @@ namespace wolfPack_Assign3
             this.label2.ForeColor = System.Drawing.Color.OrangeRed;
             this.label2.Location = new System.Drawing.Point(15, 98);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(215, 24);
+            this.label2.Size = new System.Drawing.Size(210, 22);
             this.label2.TabIndex = 1;
             this.label2.Text = "PostScore Per Subreddit";
             // 
@@ -98,7 +98,7 @@ namespace wolfPack_Assign3
             this.label3.ForeColor = System.Drawing.Color.OrangeRed;
             this.label3.Location = new System.Drawing.Point(15, 217);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(170, 24);
+            this.label3.Size = new System.Drawing.Size(165, 22);
             this.label3.TabIndex = 2;
             this.label3.Text = "PostScore Per User";
             // 
@@ -109,7 +109,7 @@ namespace wolfPack_Assign3
             this.label4.ForeColor = System.Drawing.Color.OrangeRed;
             this.label4.Location = new System.Drawing.Point(15, 341);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(283, 24);
+            this.label4.Size = new System.Drawing.Size(274, 22);
             this.label4.TabIndex = 3;
             this.label4.Text = "Total Awards within a Subreddit";
             // 
@@ -120,7 +120,7 @@ namespace wolfPack_Assign3
             this.label5.ForeColor = System.Drawing.Color.OrangeRed;
             this.label5.Location = new System.Drawing.Point(15, 482);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(329, 24);
+            this.label5.Size = new System.Drawing.Size(320, 22);
             this.label5.TabIndex = 4;
             this.label5.Text = "List of Subreddits Posted to By a User";
             // 
@@ -131,7 +131,7 @@ namespace wolfPack_Assign3
             this.label6.ForeColor = System.Drawing.Color.OrangeRed;
             this.label6.Location = new System.Drawing.Point(15, 599);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(325, 24);
+            this.label6.Size = new System.Drawing.Size(315, 22);
             this.label6.TabIndex = 5;
             this.label6.Text = "Points Threshold for Posts/Comment";
             // 
@@ -142,18 +142,18 @@ namespace wolfPack_Assign3
             this.label7.ForeColor = System.Drawing.Color.OrangeRed;
             this.label7.Location = new System.Drawing.Point(438, 15);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 24);
+            this.label7.Size = new System.Drawing.Size(68, 22);
             this.label7.TabIndex = 6;
             this.label7.Text = "Output";
             // 
-            // textBox1
+            // outputBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(442, 49);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(582, 668);
-            this.textBox1.TabIndex = 7;
+            this.outputBox.Location = new System.Drawing.Point(442, 49);
+            this.outputBox.Multiline = true;
+            this.outputBox.Name = "outputBox";
+            this.outputBox.ReadOnly = true;
+            this.outputBox.Size = new System.Drawing.Size(582, 668);
+            this.outputBox.TabIndex = 7;
             // 
             // specificDatePicker
             // 
@@ -173,16 +173,16 @@ namespace wolfPack_Assign3
             this.subPanel.Size = new System.Drawing.Size(231, 66);
             this.subPanel.TabIndex = 9;
             // 
-            // lowSub
+            // avgSub
             // 
-            this.lowSub.AutoSize = true;
-            this.lowSub.Location = new System.Drawing.Point(8, 21);
-            this.lowSub.Name = "lowSub";
-            this.lowSub.Size = new System.Drawing.Size(64, 19);
-            this.lowSub.TabIndex = 0;
-            this.lowSub.TabStop = true;
-            this.lowSub.Text = "Lowest";
-            this.lowSub.UseVisualStyleBackColor = true;
+            this.avgSub.AutoSize = true;
+            this.avgSub.Location = new System.Drawing.Point(151, 21);
+            this.avgSub.Name = "avgSub";
+            this.avgSub.Size = new System.Drawing.Size(69, 19);
+            this.avgSub.TabIndex = 2;
+            this.avgSub.TabStop = true;
+            this.avgSub.Text = "Average";
+            this.avgSub.UseVisualStyleBackColor = true;
             // 
             // highSub
             // 
@@ -195,16 +195,16 @@ namespace wolfPack_Assign3
             this.highSub.Text = "Highest";
             this.highSub.UseVisualStyleBackColor = true;
             // 
-            // avgSub
+            // lowSub
             // 
-            this.avgSub.AutoSize = true;
-            this.avgSub.Location = new System.Drawing.Point(151, 21);
-            this.avgSub.Name = "avgSub";
-            this.avgSub.Size = new System.Drawing.Size(69, 19);
-            this.avgSub.TabIndex = 2;
-            this.avgSub.TabStop = true;
-            this.avgSub.Text = "Average";
-            this.avgSub.UseVisualStyleBackColor = true;
+            this.lowSub.AutoSize = true;
+            this.lowSub.Location = new System.Drawing.Point(8, 21);
+            this.lowSub.Name = "lowSub";
+            this.lowSub.Size = new System.Drawing.Size(64, 19);
+            this.lowSub.TabIndex = 0;
+            this.lowSub.TabStop = true;
+            this.lowSub.Text = "Lowest";
+            this.lowSub.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -328,17 +328,6 @@ namespace wolfPack_Assign3
             this.panel2.Size = new System.Drawing.Size(179, 70);
             this.panel2.TabIndex = 18;
             // 
-            // lessThanRadioButton
-            // 
-            this.lessThanRadioButton.AutoSize = true;
-            this.lessThanRadioButton.Location = new System.Drawing.Point(8, 8);
-            this.lessThanRadioButton.Name = "lessThanRadioButton";
-            this.lessThanRadioButton.Size = new System.Drawing.Size(148, 19);
-            this.lessThanRadioButton.TabIndex = 0;
-            this.lessThanRadioButton.TabStop = true;
-            this.lessThanRadioButton.Text = "Less Than or Equal To";
-            this.lessThanRadioButton.UseVisualStyleBackColor = true;
-            // 
             // greaterThanRadioButton
             // 
             this.greaterThanRadioButton.AutoSize = true;
@@ -350,9 +339,35 @@ namespace wolfPack_Assign3
             this.greaterThanRadioButton.Text = "Greater Than or Equal To";
             this.greaterThanRadioButton.UseVisualStyleBackColor = true;
             // 
+            // lessThanRadioButton
+            // 
+            this.lessThanRadioButton.AutoSize = true;
+            this.lessThanRadioButton.Location = new System.Drawing.Point(8, 8);
+            this.lessThanRadioButton.Name = "lessThanRadioButton";
+            this.lessThanRadioButton.Size = new System.Drawing.Size(148, 19);
+            this.lessThanRadioButton.TabIndex = 0;
+            this.lessThanRadioButton.TabStop = true;
+            this.lessThanRadioButton.Text = "Less Than or Equal To";
+            this.lessThanRadioButton.UseVisualStyleBackColor = true;
+            // 
             // numericUpDown
             // 
+            this.numericUpDown.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.numericUpDown.Location = new System.Drawing.Point(204, 664);
+            this.numericUpDown.Maximum = new decimal(new int[] {
+            250000,
+            0,
+            0,
+            0});
+            this.numericUpDown.Minimum = new decimal(new int[] {
+            700000,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown.Name = "numericUpDown";
             this.numericUpDown.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown.TabIndex = 19;
@@ -380,7 +395,7 @@ namespace wolfPack_Assign3
             // userQuery
             // 
             this.userQuery.ForeColor = System.Drawing.Color.Red;
-            this.userQuery.Location = new System.Drawing.Point(337, 268);
+            this.userQuery.Location = new System.Drawing.Point(337, 272);
             this.userQuery.Name = "userQuery";
             this.userQuery.Size = new System.Drawing.Size(75, 38);
             this.userQuery.TabIndex = 22;
@@ -416,6 +431,7 @@ namespace wolfPack_Assign3
             this.thresholdQuery.TabIndex = 25;
             this.thresholdQuery.Text = "Query";
             this.thresholdQuery.UseVisualStyleBackColor = true;
+            this.thresholdQuery.Click += new System.EventHandler(this.thresholdQuery_Click);
             // 
             // wolfPack_Assign3
             // 
@@ -440,7 +456,7 @@ namespace wolfPack_Assign3
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.subPanel);
             this.Controls.Add(this.specificDatePicker);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.outputBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -471,7 +487,7 @@ namespace wolfPack_Assign3
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox outputBox;
         private System.Windows.Forms.DateTimePicker specificDatePicker;
         private System.Windows.Forms.Panel subPanel;
         private System.Windows.Forms.RadioButton highSub;
