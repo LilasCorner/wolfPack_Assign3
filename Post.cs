@@ -268,6 +268,24 @@ namespace wolfPack_Assign3
             return "<" + Id + ">" + " [" + wolfPack_Assign3.subMap[SubHome].Name + "] " + "(" + Score + ") " + Title + " : " + PostContent + " - " + " |" + timeStamp + "| \n";
         }
 
+        public string toStringTiny()
+        {
+            string shortTitle = "";
+            
+
+            if (Title.Length > 35)
+            {
+                shortTitle = Title.Substring(0, 35);
+            }
+            else
+            {
+                shortTitle = Title;
+            }
+
+
+            return String.Format("{0, 60} -- {1, 10}", shortTitle, Score);
+            
+        }
 
         public string ToStringShort()
         {

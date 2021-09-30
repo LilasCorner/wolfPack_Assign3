@@ -346,38 +346,40 @@ namespace wolfPack_Assign3
 
             var greatPostQ =
                from N in postMap
-               where N.Value.Score > Convert.ToDouble(numericUpDown.Value)
-               select N.Key;
-
-            var lowPostQ =
-               from N in postMap
-               where N.Value.Score < Convert.ToDouble(numericUpDown.Value)
+               where N.Value.Score >= Convert.ToDouble(numericUpDown.Value)
                select N.Key;
 
             var greatTopComQ =
                 from N in postMap.Values
                 from M in N.PostComments
-                where M.Score > Convert.ToDouble(numericUpDown.Value)
+                where M.Score >= Convert.ToDouble(numericUpDown.Value)
                 select M;
 
-            var lowTopComQ =
-                from N in postMap.Values
-                from M in N.PostComments
-                where M.Score < Convert.ToDouble(numericUpDown.Value)
-                select M;
 
             var greatComQ =
                 from N in postMap.Values
                 from M in N.PostComments
                 from L in M.CommentReplies
-                where L.Score < Convert.ToDouble(numericUpDown.Value)
+                where L.Score >= Convert.ToDouble(numericUpDown.Value)
                 select L;
+
+            var lowPostQ =
+               from N in postMap
+               where N.Value.Score <= Convert.ToDouble(numericUpDown.Value)
+               select N.Key;
+
+            var lowTopComQ =
+                from N in postMap.Values
+                from M in N.PostComments
+                where M.Score <= Convert.ToDouble(numericUpDown.Value)
+                select M;
+
 
             var lowComQ =
                 from N in postMap.Values
                 from M in N.PostComments
                 from L in M.CommentReplies
-                where L.Score > Convert.ToDouble(numericUpDown.Value)
+                where L.Score <= Convert.ToDouble(numericUpDown.Value)
                 select L;
 
 
@@ -394,14 +396,50 @@ namespace wolfPack_Assign3
 
                     foreach (var item in lowPostQ)
                     {
-                        outputBox.AppendText(postMap[item].ToStringShort() + Environment.NewLine);
+                        outputBox.AppendText(postMap[item].toStringTiny() + Environment.NewLine);
+                    }
+
+                    outputBox.AppendText(Environment.NewLine + "Top Level Comments:" + Environment.NewLine);
+
+                    foreach (var item in lowTopComQ)
+                    {
+                        outputBox.AppendText(item.toStringTiny() + Environment.NewLine);
+                    }
+
+                    outputBox.AppendText(Environment.NewLine + "Comment Replies:" + Environment.NewLine);
+
+                    foreach (var item in lowComQ)
+                    {
+                        outputBox.AppendText(item.toStringTiny() + Environment.NewLine);
                     }
 
                 }
                 else
                 {
-                    outputBox.AppendText("List of Posts/Comments with a Score Greater than or Equal to " + numericUpDown.Value + ":\n");
-                    outputBox.AppendText("--------------------------------------");
+
+                    outputBox.AppendText("List of Posts/Comments with a Score Greater than or Equal to " + numericUpDown.Value + ":" + Environment.NewLine);
+                    outputBox.AppendText("--------------------------------------" + Environment.NewLine);
+                    outputBox.AppendText("Posts:" + Environment.NewLine);
+
+                    foreach (var item in greatPostQ)
+                    {
+                        outputBox.AppendText(postMap[item].toStringTiny() + Environment.NewLine);
+                    }
+
+                    outputBox.AppendText(Environment.NewLine + "Top Level Comments:" + Environment.NewLine);
+
+                    foreach (var item in greatTopComQ)
+                    {
+                        outputBox.AppendText(item.toStringTiny() + Environment.NewLine);
+                    }
+
+                    outputBox.AppendText(Environment.NewLine + "Comment Replies:" + Environment.NewLine);
+
+                    foreach (var item in greatComQ)
+                    {
+                        outputBox.AppendText(item.toStringTiny() + Environment.NewLine);
+                    }
+
 
                 }
 

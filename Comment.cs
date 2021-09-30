@@ -196,6 +196,24 @@ namespace wolfPack_Assign3
 
         }
 
+        public string toStringTiny()
+        {
+            string shortTitle = "";
+
+
+            if (Content.Length > 35)
+            {
+                shortTitle = Content.Substring(0, 35);
+            }
+            else
+            {
+                shortTitle = Content;
+            }
+
+
+            return String.Format("{0, 60} -- {1, 10}", shortTitle, Score);
+        }
+
     }
 
     // When you implement IEnumerable, you must also implement IEnumerator.

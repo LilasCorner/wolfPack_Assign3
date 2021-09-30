@@ -152,6 +152,7 @@ namespace wolfPack_Assign3
             this.outputBox.Multiline = true;
             this.outputBox.Name = "outputBox";
             this.outputBox.ReadOnly = true;
+            this.outputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputBox.Size = new System.Drawing.Size(582, 668);
             this.outputBox.TabIndex = 7;
             // 
