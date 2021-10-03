@@ -132,6 +132,11 @@ namespace wolfPack_Assign3
             get { return id; }
         }
 
+        public DateTime TimeStamp
+        {
+            get { return timeStamp; }
+        }
+
         public bool Locked
         {
             get { return locked; }

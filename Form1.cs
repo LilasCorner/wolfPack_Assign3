@@ -450,6 +450,25 @@ namespace wolfPack_Assign3
                 return;
             }
         }
+
+        private void dateQuery_Click(object sender, EventArgs e)
+        {
+            outputBox.Clear();
+
+            var dateSelected =
+                from N in postMap.Values
+                where N.TimeStamp == Convert.ToDateTime(specificDatePicker)
+                select N;
+
+
+            foreach(var item in dateSelected)
+            {
+                outputBox.AppendText(item.ToString());
+                
+            }
+
+
+        }
     }
 
 }
