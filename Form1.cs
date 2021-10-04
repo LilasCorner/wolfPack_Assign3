@@ -522,7 +522,7 @@ namespace wolfPack_Assign3
                 if (myQuery.Count < 1)
                 {
                     outputBox.Clear();
-                    outputBox.AppendText("No entries for this specific date. " + Environment.NewLine);
+                    outputBox.AppendText("No entries for this specific user. " + Environment.NewLine);
                 }
                 else
                 {
