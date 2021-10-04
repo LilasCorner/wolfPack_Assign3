@@ -457,16 +457,18 @@ namespace wolfPack_Assign3
 
             var dateSelected =
                 from N in postMap.Values
-                where N.TimeStamp == Convert.ToDateTime(specificDatePicker)
+                where N.TimeStamp == Convert.ToDateTime(specificDatePicker.Value)
                 select N;
 
 
             foreach(var item in dateSelected)
             {
-                outputBox.AppendText(item.ToString());
-                
+                outputBox.AppendText(item.ToString() + Environment.NewLine);
             }
-
+            if (outputBox.Text.Equals(""))
+            {
+                outputBox.AppendText("No entries for this specific date. " + Environment.NewLine);
+            }
 
         }
     }

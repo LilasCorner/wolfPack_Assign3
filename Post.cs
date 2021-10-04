@@ -276,7 +276,8 @@ namespace wolfPack_Assign3
         public string toStringTiny()
         {
             string shortTitle = "";
-            
+            string dash = "--";
+
 
             if (Title.Length > 35)
             {
@@ -288,7 +289,7 @@ namespace wolfPack_Assign3
             }
 
 
-            return String.Format("{0, 60} -- {1, 10}", shortTitle, Score);
+            return String.Format("{0, 60} {1,10} {2, 10}", shortTitle, dash, Score);
             
         }
 
@@ -315,7 +316,7 @@ namespace wolfPack_Assign3
         }
 
 
-
+        
     }
     public class PostEnum : IEnumerator
     {
