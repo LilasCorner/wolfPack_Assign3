@@ -349,7 +349,8 @@ namespace wolfPack_Assign3
 
         public void endQueryMsg()
         {
-            outputBox.AppendText("\n*************** END OF QUERY RESULTS ***************\n");
+            outputBox.AppendText(Environment.NewLine);
+            outputBox.AppendText("*************** END OF QUERY RESULTS ***************");
         }
 
         private void thresholdQuery_Click(object sender, EventArgs e)
@@ -480,11 +481,15 @@ namespace wolfPack_Assign3
                 outputBox.AppendText(item.ToString() + Environment.NewLine);
             }
 
-            endQueryMsg();
+            
 
             if (outputBox.Text.Equals(""))
             {
                 outputBox.AppendText("No entries for this specific date. " + Environment.NewLine);
+            }
+            else
+            {
+                endQueryMsg();
             }
 
         }
@@ -497,12 +502,38 @@ namespace wolfPack_Assign3
             {
                 var subSelectedQ =
                     from N in postMap.Values
-                    where N.AuthorId == userComboBox.SelectedIndex
+                    where N.AuthorId == nameToId(userComboBox.Items[userComboBox.SelectedIndex].ToString(), 1)
                     select N.SubHome;
+
+                HashSet<uint> uniqueSubs = new HashSet<uint>();
+
+                outputBox.AppendText("Subreddits Posted To By: "+ userComboBox.Items[userComboBox.SelectedIndex].ToString() + Environment.NewLine);
+                outputBox.AppendText("--------------------------------------" + Environment.NewLine);
+                var myQuery = (from Q in subSelectedQ select Q).ToList();
+
 
                 foreach (var item in subSelectedQ)
                 {
-                    outputBox.AppendText(subMap[item].Name + Environment.NewLine);
+                    uniqueSubs.Add(item);
+                }
+
+
+
+                if (myQuery.Count < 1)
+                {
+                    outputBox.Clear();
+                    outputBox.AppendText("No entries for this specific date. " + Environment.NewLine);
+                }
+                else
+                {
+                    foreach(var item in uniqueSubs)
+                    {
+
+                        outputBox.AppendText(String.Format("{0, 30}", subMap[item].Name));
+                        outputBox.AppendText(Environment.NewLine);
+                    }
+
+                    endQueryMsg();
                 }
             }
             else
