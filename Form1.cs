@@ -56,6 +56,7 @@ namespace wolfPack_Assign3
         {
             InitializeComponent();
             readData();
+            popComboBox();
         }
 
         public void readData()
@@ -201,6 +202,19 @@ namespace wolfPack_Assign3
 
         }
 
+
+        public void popComboBox()
+        {
+            foreach(var item in usersMap.Keys)
+            {
+                userComboBox.Items.Add(usersMap[item].Name);
+            }
+
+            foreach (var item in subMap.Keys)
+            {
+                subComboBox.Items.Add(subMap[item]);
+            }
+        }
 
         public uint nameToId(string name, uint dictionary)
         {
@@ -465,11 +479,37 @@ namespace wolfPack_Assign3
             {
                 outputBox.AppendText(item.ToString() + Environment.NewLine);
             }
+
+            endQueryMsg();
+
             if (outputBox.Text.Equals(""))
             {
                 outputBox.AppendText("No entries for this specific date. " + Environment.NewLine);
             }
 
+        }
+
+        private void userPostQuery_Click(object sender, EventArgs e)
+        {
+            outputBox.Clear();
+         
+            if(userComboBox.SelectedIndex != -1)
+            {
+                var subSelectedQ =
+                    from N in postMap.Values
+                    where N.AuthorId == userComboBox.SelectedIndex
+                    select N.SubHome;
+
+                foreach (var item in subSelectedQ)
+                {
+                    outputBox.AppendText(subMap[item].Name + Environment.NewLine);
+                }
+            }
+            else
+            {
+                outputBox.AppendText("Please select the user you would like to see subreddits for. " + Environment.NewLine);
+
+            }
         }
     }
 
