@@ -199,7 +199,7 @@ namespace wolfPack_Assign3
         public string toStringTiny()
         {
             string shortTitle = "";
-
+            string dash = "--";
 
             if (Content.Length > 35)
             {
@@ -211,7 +211,7 @@ namespace wolfPack_Assign3
             }
 
 
-            return String.Format("{0, 60} -- {1, 10}", shortTitle, Score);
+            return String.Format("{0, 40} {1,5} {2, 10}", shortTitle, dash, Score);
         }
 
     }

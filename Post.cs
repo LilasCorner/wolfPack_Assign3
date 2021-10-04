@@ -289,7 +289,7 @@ namespace wolfPack_Assign3
             }
 
 
-            return String.Format("{0, 60} {1,10} {2, 10}", shortTitle, dash, Score);
+            return String.Format("{0, 40} {1,5} {2, 10}", shortTitle, dash, Score);
             
         }
 
