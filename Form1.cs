@@ -883,9 +883,34 @@ namespace wolfPack_Assign3
             outputBox.Clear();
 
 
-            var subQuery = 
-                from N in subMap.Values
-                where N
+            var lowSubQuery =
+                from N in postMap.Values
+                group N by N.SubHome into subGroup
+                select new
+                {
+                    Name = subGroup.Key,
+                    lowScore = subGroup.Min(x => x.Score),
+                };
+
+            var highSubQuery =
+                from N in postMap.Values
+                group N by N.SubHome into subGroup
+                select new
+                {
+                    Name = subGroup.Key,
+                    lowScore = subGroup.Max(x => x.Score),
+                };
+
+            var avgSubQuery =
+                from N in postMap.Values
+                group N by N.SubHome into subGroup
+                select new
+                {
+                    Name = subGroup.Key,
+                    lowScore = subGroup.Average(x => x.Score),
+                };
+
+
         }
     }
 
