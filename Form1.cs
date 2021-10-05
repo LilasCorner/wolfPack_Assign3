@@ -542,6 +542,339 @@ namespace wolfPack_Assign3
 
             }
         }
+
+        private void awardQuery_Click(object sender, EventArgs e)
+        {
+            outputBox.Clear();
+
+            bool sflag = false;
+            bool gflag = false;
+            bool pflag = false;
+            string intro = "";
+           
+            int print = 0; 
+
+            if ((!silverAward.Checked && !goldAward.Checked && !platAward.Checked) && subComboBox.SelectedIndex < 0)
+            {
+                outputBox.AppendText("Please select an award type, and the subreddit you'd like to see results for. " + Environment.NewLine);
+                return;
+            }
+
+                if (silverAward.Checked)
+                {
+                    print = 1;
+                    sflag = true;
+                    intro += "Silver";
+                
+                }
+                if (goldAward.Checked)
+                {
+                    gflag = true;
+                    if (sflag && !platAward.Checked)
+                    {
+                        intro += ", and Gold";
+                        print = 4;
+                    }
+                    else if (sflag && platAward.Checked)
+                    {
+                        intro += ", Gold";
+                    }
+                    else
+                    {
+                        print = 2;
+                        intro += "Gold";
+                    }
+                }
+                if (platAward.Checked)
+                {
+                pflag = true;
+                    if (sflag || gflag)
+                    {
+                        intro += ", and Platinum";
+                        if(sflag && !gflag)
+                        {
+                            print = 5;
+                        }
+                        if (!sflag && gflag)
+                        {
+                            print = 6;
+                        }
+                    }
+                    else
+                    {
+                        intro += "Platinum";
+                        print = 3;
+                    }
+                }
+
+
+            if(sflag && gflag && pflag)
+            {
+                print = 7;
+            }
+
+            uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
+
+
+            outputBox.AppendText(intro + " awards for the " + subMap[sub].Name + " Subreddit:" + Environment.NewLine);
+            outputBox.AppendText("--------------------------------------" + Environment.NewLine);
+
+            switch (print) //switch based on how many checkboxes were checked
+                {
+                    case 1: //silver
+                        {
+                            printSilver();
+                            break;
+                        }
+                    case 2: //gold
+                        {
+                            printGold();
+                            break;
+                        }
+                    case 3:// plat
+                        {
+                            printPlat();
+                            break;
+                        }
+                    case 4: //silver + gold
+                        {
+                            printSilver();
+                            printGold();
+                            break;
+                        }
+                    case 5:// silver + plat
+                        {
+                            printSilver();
+                            printPlat();
+                            break;
+                        }
+                    case 6: //gold + plat
+                        {
+                            printGold();
+                            printPlat();
+                            break;
+                        }
+                    case 7: //all
+                    {
+                        printSilver();
+                        printGold();
+                        printPlat();
+                        break;
+                    }
+
+                }
+
+            endQueryMsg();
+
+        }
+
+
+
+        public void printSilver()
+        {
+            uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
+
+            var sPostQ =
+                    from N in postMap.Values
+                    where N.SubHome == sub
+                    select N[0];
+
+            var sTopQ =
+                from N in postMap.Values
+                where N.SubHome == sub
+                from M in N.PostComments
+                select M[0];
+
+            var sComQ =
+                from N in postMap.Values
+                where N.SubHome == sub
+                from M in N.PostComments
+                from L in M.CommentReplies
+                select L[0];
+
+            if (subMap[sub].Name == "all")
+            {
+                sPostQ =
+                   from N in postMap.Values
+                   select N[2];
+
+                sTopQ =
+                   from N in postMap.Values
+                   from M in N.PostComments
+                   select M[2];
+
+                sComQ =
+                   from N in postMap.Values
+                   from M in N.PostComments
+                   from L in M.CommentReplies
+                   select L[2];
+            }
+
+            int totals = 0;
+
+            foreach(var item in sPostQ)
+            {
+                totals += item;
+            }
+
+            outputBox.AppendText("\t Silver awards in Posts: " + totals + Environment.NewLine);
+            totals = 0;
+
+            foreach (var item in sTopQ)
+            {
+                totals += item;
+            }
+            outputBox.AppendText("\t Silver awards in Top Comments: " + totals + Environment.NewLine);
+
+            totals = 0;
+
+            foreach (var item in sComQ)
+            {
+                totals += item;
+            }
+            outputBox.AppendText("\t Silver awards in Comments: " + totals + Environment.NewLine + Environment.NewLine);
+
+        }
+
+        public void printGold()
+        {
+            uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
+
+            var gPostQ =
+                from N in postMap.Values
+                where N.SubHome == sub
+                select N[1];
+
+            var gTopQ =
+                from N in postMap.Values
+                where N.SubHome == sub
+                from M in N.PostComments
+                select M[1];
+
+            var gComQ =
+                from N in postMap.Values
+                where N.SubHome == sub
+                from M in N.PostComments
+                from L in M.CommentReplies
+                select L[1];
+
+            if (subMap[sub].Name == "all")
+            {
+                gPostQ =
+                   from N in postMap.Values
+                   select N[2];
+
+                gTopQ =
+                   from N in postMap.Values
+                   from M in N.PostComments
+                   select M[2];
+
+                gComQ =
+                   from N in postMap.Values
+                   from M in N.PostComments
+                   from L in M.CommentReplies
+                   select L[2];
+            }
+
+            int totals = 0;
+
+            foreach (var item in gPostQ)
+            {
+                totals += item;
+            }
+
+            outputBox.AppendText("\t Gold awards in Posts: " + totals + Environment.NewLine);
+            totals = 0;
+
+            foreach (var item in gTopQ)
+            {
+                totals += item;
+            }
+            outputBox.AppendText("\t Gold awards in Top Comments: " + totals + Environment.NewLine);
+
+            totals = 0;
+
+            foreach (var item in gComQ)
+            {
+                totals += item;
+            }
+            outputBox.AppendText("\t Gold awards in Comments: " + totals + Environment.NewLine + Environment.NewLine);
+
+
+
+        }
+
+
+        public void printPlat()
+        {
+            uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
+
+            
+            var pPostQ =
+                from N in postMap.Values
+                where N.SubHome == sub
+                select N[2];
+
+            var pTopQ =
+                from N in postMap.Values
+                where N.SubHome == sub
+                from M in N.PostComments
+                select M[2];
+
+            var pComQ =
+                from N in postMap.Values
+                where N.SubHome == sub
+                from M in N.PostComments
+                from L in M.CommentReplies
+                select L[2];
+
+            if (subMap[sub].Name == "all")
+            {
+                 pPostQ =
+                    from N in postMap.Values
+                    select N[2];
+
+                 pTopQ =
+                    from N in postMap.Values
+                    from M in N.PostComments
+                    select M[2];
+
+                 pComQ =
+                    from N in postMap.Values
+                    from M in N.PostComments
+                    from L in M.CommentReplies
+                    select L[2];
+            }
+
+            int totals = 0;
+
+            foreach (var item in pPostQ)
+            {
+                totals += item;
+            }
+
+            outputBox.AppendText("\t Plat awards in Posts: " + totals + Environment.NewLine);
+            totals = 0;
+
+            foreach (var item in pTopQ)
+            {
+                totals += item;
+            }
+            outputBox.AppendText("\t Plat awards in Top Comments: " + totals + Environment.NewLine);
+
+            totals = 0;
+
+            foreach (var item in pComQ)
+            {
+                totals += item;
+            }
+            outputBox.AppendText("\t Plat awards in Comments: " + totals + Environment.NewLine + Environment.NewLine);
+
+
+        }
+
     }
+
+
 
 }

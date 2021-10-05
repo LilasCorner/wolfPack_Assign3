@@ -414,6 +414,7 @@ namespace wolfPack_Assign3
             this.awardQuery.TabIndex = 23;
             this.awardQuery.Text = "Query";
             this.awardQuery.UseVisualStyleBackColor = true;
+            this.awardQuery.Click += new System.EventHandler(this.awardQuery_Click);
             // 
             // userPostQuery
             // 
