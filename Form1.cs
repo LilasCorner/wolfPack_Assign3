@@ -398,7 +398,7 @@ namespace wolfPack_Assign3
                 select L;
 
 
-            if ( (lessThanRadioButton.Checked || greaterThanRadioButton.Checked) && numericUpDown.Value != 0)
+            if ( (lessThanRadioButton.Checked || greaterThanRadioButton.Checked))
             {
 
                 
@@ -455,13 +455,13 @@ namespace wolfPack_Assign3
                         outputBox.AppendText(item.toStringTiny() + Environment.NewLine);
                     }
 
-
                 }
+                    endQueryMsg();
 
             }
             else
             {
-                outputBox.AppendText("Please make sure a radio button is selected, and a point value is chosen.\n");
+                outputBox.AppendText("Please make sure a radio button is selected.\n");
                 return;
             }
         }
@@ -557,7 +557,7 @@ namespace wolfPack_Assign3
            
             int print = 0; 
 
-            if ((!silverAward.Checked && !goldAward.Checked && !platAward.Checked) && subComboBox.SelectedIndex < 0)
+            if ((!silverAward.Checked && !goldAward.Checked && !platAward.Checked) && subComboBox.SelectedIndex == -1)
             {
                 outputBox.AppendText("Please select an award type, and the subreddit you'd like to see results for. " + Environment.NewLine);
                 return;
