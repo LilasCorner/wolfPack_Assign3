@@ -557,7 +557,7 @@ namespace wolfPack_Assign3
            
             int print = 0; 
 
-            if ((!silverAward.Checked && !goldAward.Checked && !platAward.Checked) && subComboBox.SelectedIndex == -1)
+            if ((!silverAward.Checked && !goldAward.Checked && !platAward.Checked) || subComboBox.SelectedIndex == -1)
             {
                 outputBox.AppendText("Please select an award type, and the subreddit you'd like to see results for. " + Environment.NewLine);
                 return;
@@ -695,7 +695,7 @@ namespace wolfPack_Assign3
                 from L in M.CommentReplies
                 select L[0];
 
-            if (subMap[sub].Name == "all")
+            if (subMap[sub].Name.Equals("all"))
             {
                 sPostQ =
                    from N in postMap.Values
@@ -717,6 +717,7 @@ namespace wolfPack_Assign3
 
             foreach(var item in sPostQ)
             {
+                MessageBox.Show(item.ToString());
                 totals += item;
             }
 
@@ -761,7 +762,7 @@ namespace wolfPack_Assign3
                 from L in M.CommentReplies
                 select L[1];
 
-            if (subMap[sub].Name == "all")
+            if (subMap[sub].Name.Equals("all"))
             {
                 gPostQ =
                    from N in postMap.Values
@@ -791,6 +792,7 @@ namespace wolfPack_Assign3
 
             foreach (var item in gTopQ)
             {
+               
                 totals += item;
             }
             outputBox.AppendText("\t Gold awards in Top Comments: " + totals + Environment.NewLine);
@@ -831,7 +833,7 @@ namespace wolfPack_Assign3
                 from L in M.CommentReplies
                 select L[2];
 
-            if (subMap[sub].Name == "all")
+            if (subMap[sub].Name.Equals("all"))
             {
                  pPostQ =
                     from N in postMap.Values
