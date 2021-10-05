@@ -470,10 +470,12 @@ namespace wolfPack_Assign3
         {
             outputBox.Clear();
 
+
             var dateSelected =
                 from N in postMap.Values
-                where N.TimeStamp == Convert.ToDateTime(specificDatePicker.Value)
+                where N.TimeStamp.ToShortDateString() == Convert.ToDateTime(specificDatePicker.Value.Date).ToShortDateString()
                 select N;
+
 
 
             foreach(var item in dateSelected)
@@ -481,9 +483,10 @@ namespace wolfPack_Assign3
                 outputBox.AppendText(item.ToString() + Environment.NewLine);
             }
 
-            
+            var myQuery = (from Q in dateSelected select Q).ToList();
 
-            if (outputBox.Text.Equals(""))
+
+            if (myQuery.Count < 1)
             {
                 outputBox.AppendText("No entries for this specific date. " + Environment.NewLine);
             }
