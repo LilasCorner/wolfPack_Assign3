@@ -671,8 +671,6 @@ namespace wolfPack_Assign3
 
         }
 
-
-
         public void printSilver()
         {
             uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
@@ -697,45 +695,33 @@ namespace wolfPack_Assign3
 
             if (subMap[sub].Name.Equals("all"))
             {
+
                 sPostQ =
                    from N in postMap.Values
-                   select N[2];
+                   select N[0];
 
                 sTopQ =
                    from N in postMap.Values
                    from M in N.PostComments
-                   select M[2];
+                   select M[0];
 
                 sComQ =
                    from N in postMap.Values
                    from M in N.PostComments
                    from L in M.CommentReplies
-                   select L[2];
+                   select L[0];
             }
 
             int totals = 0;
 
-            foreach(var item in sPostQ)
-            {
-                MessageBox.Show(item.ToString());
-                totals += item;
-            }
-
+        
+            totals = sPostQ.Sum();
             outputBox.AppendText("\t Silver awards in Posts: " + totals + Environment.NewLine);
-            totals = 0;
 
-            foreach (var item in sTopQ)
-            {
-                totals += item;
-            }
+            totals = sTopQ.Sum();
             outputBox.AppendText("\t Silver awards in Top Comments: " + totals + Environment.NewLine);
-
-            totals = 0;
-
-            foreach (var item in sComQ)
-            {
-                totals += item;
-            }
+        
+            totals = sComQ.Sum();
             outputBox.AppendText("\t Silver awards in Comments: " + totals + Environment.NewLine + Environment.NewLine);
 
         }
@@ -766,18 +752,18 @@ namespace wolfPack_Assign3
             {
                 gPostQ =
                    from N in postMap.Values
-                   select N[2];
+                   select N[1];
 
                 gTopQ =
                    from N in postMap.Values
                    from M in N.PostComments
-                   select M[2];
+                   select M[1];
 
                 gComQ =
                    from N in postMap.Values
                    from M in N.PostComments
                    from L in M.CommentReplies
-                   select L[2];
+                   select L[1];
             }
 
             int totals = 0;
