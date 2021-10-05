@@ -881,6 +881,11 @@ namespace wolfPack_Assign3
         private void subQuery_Click(object sender, EventArgs e)
         {
             outputBox.Clear();
+
+
+            var subQuery = 
+                from N in subMap.Values
+                where N
         }
     }
 
