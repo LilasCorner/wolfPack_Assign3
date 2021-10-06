@@ -436,6 +436,7 @@ namespace wolfPack_Assign3
             this.userQuery.TabIndex = 22;
             this.userQuery.Text = "Query";
             this.userQuery.UseVisualStyleBackColor = true;
+            this.userQuery.Click += new System.EventHandler(this.userQuery_Click);
             // 
             // awardQuery
             // 
@@ -477,7 +478,7 @@ namespace wolfPack_Assign3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1554, 1058);
+            this.ClientSize = new System.Drawing.Size(1554, 1050);
             this.Controls.Add(this.thresholdQuery);
             this.Controls.Add(this.userPostQuery);
             this.Controls.Add(this.awardQuery);

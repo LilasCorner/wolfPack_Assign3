@@ -886,6 +886,7 @@ namespace wolfPack_Assign3
             var lowSubQuery =
                 from N in postMap.Values
                 group N by N.SubHome into subGroup
+                orderby Name
                 select new
                 {
                     Name = subGroup.Key,
@@ -895,6 +896,7 @@ namespace wolfPack_Assign3
             var highSubQuery =
                 from N in postMap.Values
                 group N by N.SubHome into subGroup
+                orderby Name
                 select new
                 {
                     Name = subGroup.Key,
@@ -904,6 +906,7 @@ namespace wolfPack_Assign3
             var avgSubQuery =
                 from N in postMap.Values
                 group N by N.SubHome into subGroup
+                orderby Name
                 select new
                 {
                     Name = subGroup.Key,
@@ -939,9 +942,75 @@ namespace wolfPack_Assign3
                 }
             }
 
+            endQueryMsg();
+
 
         }
+
+
         public string subToStringTiny(string title,int score)
+        {
+            string dash = "--";
+
+            return String.Format("{0, 40} {1,5} {2, 10}", title, dash, score);
+        }
+
+        private void userQuery_Click(object sender, EventArgs e)
+        {
+            outputBox.Clear();
+            var lowPostQuery =
+            from N in usersMap.Values
+            group N by N.PostScore into postGroup
+            orderby Name
+            select new
+            {
+                Name = postGroup.Key,
+                lowScore = postGroup.Min(x => x.PostScore),
+            
+           };
+
+           var highPostQuery =
+            from N in usersMap.Values
+            group N by N.PostScore into postGroup
+            orderby Name
+            select new
+            {
+                Name = postGroup.Key,
+                lowScore = postGroup.Max(x => x.PostScore),
+
+            };
+
+
+            var avgPostQuery =
+             from N in usersMap.Values
+            group N by N.PostScore into postGroup
+            orderby Name
+            select new
+            {
+                Name = postGroup.Key,
+                lowScore = postGroup.Average(x => x.PostScore),
+
+             };
+
+            if (!lowPost.Checked && !highSub.Checked && !avgSub.Checked)
+            {
+                outputBox.AppendText("Please select an postScore range. " + Environment.NewLine);
+                return;
+            }
+
+            if (lowSub.Checked)
+            {
+                foreach (var item in lowPostQuery)
+                {
+                    outputBox.AppendText(subToStringTiny(subMap[item.Name].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
+                }
+            }
+
+
+
+        }
+
+        public string userStringTiny(string title, int score)
         {
             string dash = "--";
 
