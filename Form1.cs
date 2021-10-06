@@ -898,7 +898,7 @@ namespace wolfPack_Assign3
                 select new
                 {
                     Name = subGroup.Key,
-                    lowScore = subGroup.Max(x => x.Score),
+                    highScore = subGroup.Max(x => x.Score),
                 };
 
             var avgSubQuery =
@@ -907,10 +907,45 @@ namespace wolfPack_Assign3
                 select new
                 {
                     Name = subGroup.Key,
-                    lowScore = subGroup.Average(x => x.Score),
+                    avgScore = subGroup.Average(x => x.Score),
                 };
 
+            if (!lowSub.Checked && !highSub.Checked && !avgSub.Checked)
+            {
+                outputBox.AppendText("Please select an postScore range. " + Environment.NewLine);
+                return;
+            }
 
+            if (lowSub.Checked)
+            {
+                foreach(var item in lowSubQuery)
+                {
+                    outputBox.AppendText(subToStringTiny(subMap[item.Name].Name,Convert.ToInt32(item.lowScore)) + Environment.NewLine);
+                }
+            }
+            if(highSub.Checked)
+            {
+                foreach(var item in highSubQuery)
+                {
+                    outputBox.AppendText(subToStringTiny(subMap[item.Name].Name,Convert.ToInt32(item.highScore)) + Environment.NewLine);
+                }
+            }
+
+            if(avgSub.Checked)
+            {
+                foreach(var item in avgSubQuery)
+                {
+                    outputBox.AppendText(subToStringTiny(subMap[item.Name].Name,Convert.ToInt32(item.avgScore)) + Environment.NewLine);
+                }
+            }
+
+
+        }
+        public string subToStringTiny(string title,int score)
+        {
+            string dash = "--";
+
+            return String.Format("{0, 40} {1,5} {2, 10}", title, dash, score);
         }
     }
 

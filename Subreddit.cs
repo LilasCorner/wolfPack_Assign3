@@ -119,7 +119,9 @@ namespace wolfPack_Assign3
 
         }
 
-        public int CompareTo(object subred) //Sorting by alphanumeric name
+     
+
+            public int CompareTo(object subred) //Sorting by alphanumeric name
         {
             if (subred == null) throw new ArgumentNullException();
 
