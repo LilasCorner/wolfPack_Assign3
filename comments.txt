@@ -14,8 +14,8 @@
 8519	9876	They're more like 5 counts of aggravated assault.	7293	10	1	2019	9	8	8	8	8	1	0	0
 9000	1221	Bro, you are not funny. Just stop.	4290	1	47	2019	9	7	10	10	11	1	0	0
 6420	3321	Bro, you are so cool telling people on the internet they're not funny. /s	9000	47	1	2019	9	7	10	12	9	0	1	0
-1678	3232	B-but... the joke is to always upvote these kinds of posts... a-am I supposed to downvote? When d-does the meme become overrated? P-please advise.	5333	14	0	2019	9	7	10	12	0	55	0	0	0
-2395	9876	You're under arrest for aggravated reposting! You have the right to log-off Reddit. Should you choose...	5333	101	1	2019	9	16	16	14	53	35	0	0	0
+1678	3232	B-but... the joke is to always upvote these kinds of posts... a-am I supposed to downvote? When d-does the meme become overrated? P-please advise.	5333	14	0	2019	9	7	10	12	0	0	0	0
+2395	9876	You're under arrest for aggravated reposting! You have the right to log-off Reddit. Should you choose...	5333	101	1	2019	9	16	16	14	53	0	0	0
 6397	0001	Do you like endless pursuits of marginal improvements? Are you a programmer or engineer? Are your favorite parts of Minecraft the automation you can accomplish with Redstone? If you answered yes to one or more of these questions, Factorio might be the game for you.	4900	432	0	2019	9	14	18	8	18	0	0	1
 1114	1111	Wait, who are you?	9231	12	11	2019	9	11	12	13	14	1	0	0
 5132	5555	The symmetry here is simply excellent. Well done!	1999	10	1	2019	9	13	14	9	55	0	0	0
