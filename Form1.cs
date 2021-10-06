@@ -959,19 +959,19 @@ namespace wolfPack_Assign3
         {
             outputBox.Clear();
             var lowPostQuery =
-            from N in usersMap.Values
-            group N by N.PostScore into postGroup
-            orderby Name
-            select new
-            {
-                Name = postGroup.Key,
-                lowScore = postGroup.Min(x => x.PostScore),
+                from N in usersMap.Values
+                group N by N.Id into postGroup
+                orderby Name
+                select new
+                {
+                    Name = postGroup.Key,
+                    lowScore = postGroup.Min(x => x.PostScore),
             
-           };
+                };
 
            var highPostQuery =
             from N in usersMap.Values
-            group N by N.PostScore into postGroup
+            group N by N.Id into postGroup
             orderby Name
             select new
             {
@@ -983,7 +983,7 @@ namespace wolfPack_Assign3
 
             var avgPostQuery =
              from N in usersMap.Values
-            group N by N.PostScore into postGroup
+            group N by N.Id into postGroup
             orderby Name
             select new
             {
@@ -1004,9 +1004,9 @@ namespace wolfPack_Assign3
                 {
                     outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
                 }
+                 endQueryMsg();
+
             }
-            endQueryMsg();
-            outputBox.Clear();
            
             if (highUser.Checked)
             {
@@ -1014,9 +1014,10 @@ namespace wolfPack_Assign3
                 {
                     outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
                 }
+                endQueryMsg();
+    
             }
 
-            endQueryMsg();
 
 
         }
