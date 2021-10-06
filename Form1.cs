@@ -976,7 +976,7 @@ namespace wolfPack_Assign3
             select new
             {
                 Name = postGroup.Key,
-                lowScore = postGroup.Max(x => x.PostScore),
+                highScore= postGroup.Max(x => x.PostScore),
 
             };
 
@@ -988,7 +988,7 @@ namespace wolfPack_Assign3
             select new
             {
                 Name = postGroup.Key,
-                lowScore = postGroup.Average(x => x.PostScore),
+                avgScore= postGroup.Average(x => x.PostScore),
 
              };
 
@@ -1007,15 +1007,23 @@ namespace wolfPack_Assign3
                  endQueryMsg();
 
             }
-           
+
             if (highUser.Checked)
             {
                 foreach (var item in highPostQuery)
                 {
-                    outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
+                    outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.highScore)) + Environment.NewLine);
                 }
                 endQueryMsg();
     
+            }
+            if(avgUser.Checked)
+            {
+                foreach(var item in avgPostQuery)
+                {
+                    outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.avgScore)) + Environment.NewLine);
+                }
+                endQueryMsg();
             }
 
 
