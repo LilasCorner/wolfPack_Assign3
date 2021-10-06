@@ -992,7 +992,7 @@ namespace wolfPack_Assign3
 
              };
 
-            if (!lowPost.Checked && !highSub.Checked && !avgSub.Checked)
+            if (!lowUser.Checked && !highUser.Checked && !avgUser.Checked)
             {
                 outputBox.AppendText("Please select an postScore range. " + Environment.NewLine);
                 return;
@@ -1002,7 +1002,7 @@ namespace wolfPack_Assign3
             {
                 foreach (var item in lowPostQuery)
                 {
-                    outputBox.AppendText(subToStringTiny(subMap[item.Name].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
+                    outputBox.AppendText(usersToStringTiny(usersMap[item.Name].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
                 }
             }
 
@@ -1010,7 +1010,7 @@ namespace wolfPack_Assign3
 
         }
 
-        public string userStringTiny(string title, int score)
+        public string usersToStringTiny(string title, int score)
         {
             string dash = "--";
 
