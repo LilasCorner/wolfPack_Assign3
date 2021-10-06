@@ -998,14 +998,25 @@ namespace wolfPack_Assign3
                 return;
             }
 
-            if (lowSub.Checked)
+            if (lowUser.Checked)
             {
                 foreach (var item in lowPostQuery)
                 {
-                    outputBox.AppendText(usersToStringTiny(usersMap[item.Name].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
+                    outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
+                }
+            }
+            endQueryMsg();
+            outputBox.Clear();
+           
+            if (highUser.Checked)
+            {
+                foreach (var item in highPostQuery)
+                {
+                    outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
                 }
             }
 
+            endQueryMsg();
 
 
         }
