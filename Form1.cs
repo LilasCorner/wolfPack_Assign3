@@ -966,6 +966,7 @@ namespace wolfPack_Assign3
             //queries defined below
             var lowSubQuery =
                 from N in postMap.Values
+                orderby subMap[N.SubHome].Name
                 group N by N.SubHome into subGroup
                 orderby Name
                 select new
@@ -976,8 +977,8 @@ namespace wolfPack_Assign3
 
             var highSubQuery =
                 from N in postMap.Values
+                orderby subMap[N.SubHome].Name
                 group N by N.SubHome into subGroup
-                orderby Name
                 select new
                 {
                     Name = subGroup.Key,
@@ -986,8 +987,8 @@ namespace wolfPack_Assign3
 
             var avgSubQuery =
                 from N in postMap.Values
+                orderby subMap[N.SubHome].Name
                 group N by N.SubHome into subGroup
-                orderby Name
                 select new
                 {
                     Name = subGroup.Key,
