@@ -508,9 +508,10 @@ namespace wolfPack_Assign3
                 where N.TimeStamp.ToShortDateString() == currentDate
                 select N;
 
+            outputBox.AppendText("All posts from: " + currentDate + Environment.NewLine);
+            outputBox.AppendText("----------------------------------------------" + Environment.NewLine);
 
-
-            foreach(var item in dateSelected)
+            foreach (var item in dateSelected)
             {
                 outputBox.AppendText(item.ToString() + Environment.NewLine);
             }
@@ -520,13 +521,12 @@ namespace wolfPack_Assign3
 
             if (myQuery.Count < 1)
             {
-                outputBox.AppendText("All posts from: "+ currentDate + Environment.NewLine);
-                outputBox.AppendText("----------------------------------------------" + Environment.NewLine);
                 outputBox.AppendText("Wow, such empty!");
 
             }
             else
             {
+
                 endQueryMsg();
             }
 
