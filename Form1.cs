@@ -1073,8 +1073,8 @@ namespace wolfPack_Assign3
             //queries defined below
             var lowPostQuery =
                 from N in postMap.Values
+                orderby usersMap[N.AuthorId].Name
                 group N by N.AuthorId into postGroup
-                orderby Name
                 select new
                 {
                     Name = postGroup.Key,
@@ -1084,8 +1084,8 @@ namespace wolfPack_Assign3
 
            var highPostQuery =
                 from N in postMap.Values
+                orderby usersMap[N.AuthorId].Name
                 group N by N.AuthorId into postGroup
-                orderby Name
             select new
             {
                 Name = postGroup.Key,
@@ -1096,8 +1096,8 @@ namespace wolfPack_Assign3
 
             var avgPostQuery =
                 from N in postMap.Values
+                orderby usersMap[N.AuthorId].Name
                 group N by N.AuthorId into postGroup
-                orderby Name
             select new
             {
                 Name = postGroup.Key,
