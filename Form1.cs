@@ -921,6 +921,8 @@ namespace wolfPack_Assign3
 
             if (lowSub.Checked)
             {
+                outputBox.AppendText("Lowest Scored Posts For Each Subreddit:" + Environment.NewLine);
+                outputBox.AppendText("----------------------------------------------------------" + Environment.NewLine);
                 foreach(var item in lowSubQuery)
                 {
                     outputBox.AppendText(subToStringTiny(subMap[item.Name].Name,Convert.ToInt32(item.lowScore)) + Environment.NewLine);
@@ -928,7 +930,9 @@ namespace wolfPack_Assign3
             }
             if(highSub.Checked)
             {
-                foreach(var item in highSubQuery)
+                outputBox.AppendText("Highest Scored Posts For Each Subreddit:" + Environment.NewLine);
+                outputBox.AppendText("----------------------------------------------------------" + Environment.NewLine);
+                foreach (var item in highSubQuery)
                 {
                     outputBox.AppendText(subToStringTiny(subMap[item.Name].Name,Convert.ToInt32(item.highScore)) + Environment.NewLine);
                 }
@@ -936,7 +940,9 @@ namespace wolfPack_Assign3
 
             if(avgSub.Checked)
             {
-                foreach(var item in avgSubQuery)
+                outputBox.AppendText("Average Scored Posts For Each Subreddit:" + Environment.NewLine);
+                outputBox.AppendText("----------------------------------------------------------" + Environment.NewLine);
+                foreach (var item in avgSubQuery)
                 {
                     outputBox.AppendText(subToStringTiny(subMap[item.Name].Name,Convert.ToInt32(item.avgScore)) + Environment.NewLine);
                 }
