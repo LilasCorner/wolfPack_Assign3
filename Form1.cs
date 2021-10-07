@@ -1013,6 +1013,8 @@ namespace wolfPack_Assign3
 
             if (lowUser.Checked)
             {
+                outputBox.AppendText("Lowest Scored Posts For Each User:" + Environment.NewLine);
+                outputBox.AppendText("----------------------------------------------------------" + Environment.NewLine);
                 foreach (var item in lowPostQuery)
                 {
                     outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.lowScore)) + Environment.NewLine);
@@ -1023,6 +1025,8 @@ namespace wolfPack_Assign3
 
             if (highUser.Checked)
             {
+                outputBox.AppendText("Highest Scored Posts For Each User:" + Environment.NewLine);
+                outputBox.AppendText("----------------------------------------------------------" + Environment.NewLine);
                 foreach (var item in highPostQuery)
                 {
                     outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.highScore)) + Environment.NewLine);
@@ -1034,6 +1038,10 @@ namespace wolfPack_Assign3
             {
                 string output = "";
                 string dash = "--";
+
+                outputBox.AppendText("Average Scored Posts For Each User:" + Environment.NewLine);
+                outputBox.AppendText("----------------------------------------------------------" + Environment.NewLine);
+
 
                 foreach (var item in avgPostQuery)
                 {
