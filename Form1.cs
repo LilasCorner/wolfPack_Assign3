@@ -28,6 +28,7 @@ namespace wolfPack_Assign3
 {
     public partial class wolfPack_Assign3 : Form
     {
+        //global variables below
         protected static string selectedUser = "";
         protected static string selectedSub = "";
         protected static string selectedPost = "";
@@ -52,6 +53,7 @@ namespace wolfPack_Assign3
             butthead
         }
 
+
         public wolfPack_Assign3()
         {
             InitializeComponent();
@@ -59,6 +61,11 @@ namespace wolfPack_Assign3
             popComboBox();
         }
 
+
+        // Method:  readData()
+        // Purpose: reads the data from the text files provided, and stores them in their corresponding dictionaries
+        // Params: N/A
+        // Returns: N/A
         public void readData()
         {
             string lineRead = "";
@@ -202,7 +209,10 @@ namespace wolfPack_Assign3
 
         }
 
-
+        // Method:  popComboBox()
+        // Purpose: populates all the comboboxes on the form
+        // Params: N/A
+        // Returns: N/A
         public void popComboBox()
         {
             foreach(var item in usersMap.Keys)
@@ -216,6 +226,10 @@ namespace wolfPack_Assign3
             }
         }
 
+        // Method:  nameToId(string name, uint dictionary)
+        // Purpose: converts a name to it's id counterpart from the dictonary provided
+        // Params: string name that we want to convert, uint dictionary that we will search through
+        // Returns: uint id that belongs to the name given
         public uint nameToId(string name, uint dictionary)
         {
             if (dictionary == 1)
@@ -244,6 +258,11 @@ namespace wolfPack_Assign3
 
             return 0;
         }
+
+        // Method:  whatAmI(uint id)
+        // Purpose: identifies what map the id provided belongs to
+        // Params: uint id, the id we want to identify
+        // Returns: integer identifying the map associated with the id
         public static int whatAmI(uint id)
         {
             if (usersMap.ContainsKey(id)) //USER
@@ -346,19 +365,26 @@ namespace wolfPack_Assign3
             return false;
         }
 
-
+        // Method:  endQueryMsg()
+        // Purpose: prints out the end of query results line
+        // Params: N/A
+        // Returns: N/A
         public void endQueryMsg()
         {
             outputBox.AppendText(Environment.NewLine);
             outputBox.AppendText("*************** END OF QUERY RESULTS ***************");
         }
 
+        // Method:  endQueryMsg()
+        // Purpose: prints out the end of query results line
+        // Params: object sender, EventArgs e
+        // Returns: N/A
         private void thresholdQuery_Click(object sender, EventArgs e)
         {
 
             outputBox.Clear();
 
-
+            //queries below
             var greatPostQ =
                from N in postMap
                where N.Value.Score >= Convert.ToDouble(numericUpDown.Value)
@@ -397,50 +423,51 @@ namespace wolfPack_Assign3
                 where L.Score <= Convert.ToDouble(numericUpDown.Value)
                 select L;
 
-
+            //make sure  a button is actually checked
             if ( (lessThanRadioButton.Checked || greaterThanRadioButton.Checked))
             {
-
-                
-
+               
                 if (lessThanRadioButton.Checked)
                 {
                     outputBox.AppendText("List of Posts/Comments with a Score Less than or Equal to " + numericUpDown.Value + ":" + Environment.NewLine);
                     outputBox.AppendText("--------------------------------------" + Environment.NewLine);
                     outputBox.AppendText("Posts:" + Environment.NewLine);
 
+                    //print posts
                     foreach (var item in lowPostQ)
                     {
                         outputBox.AppendText(postMap[item].toStringTiny() + Environment.NewLine);
                     }
 
+                    //print top comments
                     outputBox.AppendText(Environment.NewLine + "Top Level Comments:" + Environment.NewLine);
-
                     foreach (var item in lowTopComQ)
                     {
                         outputBox.AppendText(item.toStringTiny() + Environment.NewLine);
                     }
 
+                    //print regular comments
                     outputBox.AppendText(Environment.NewLine + "Comment Replies:" + Environment.NewLine);
-
                     foreach (var item in lowComQ)
                     {
                         outputBox.AppendText(item.toStringTiny() + Environment.NewLine);
                     }
 
                 }
-                else
+                else //else the greater checkbox was clicked
                 {
 
                     outputBox.AppendText("List of Posts/Comments with a Score Greater than or Equal to " + numericUpDown.Value + ":" + Environment.NewLine);
                     outputBox.AppendText("--------------------------------------" + Environment.NewLine);
                     outputBox.AppendText("Posts:" + Environment.NewLine);
 
+                    //print posts
                     foreach (var item in greatPostQ)
                     {
                         outputBox.AppendText(postMap[item].toStringTiny() + Environment.NewLine);
                     }
 
+                    //print top comments
                     outputBox.AppendText(Environment.NewLine + "Top Level Comments:" + Environment.NewLine);
 
                     foreach (var item in greatTopComQ)
@@ -448,6 +475,7 @@ namespace wolfPack_Assign3
                         outputBox.AppendText(item.toStringTiny() + Environment.NewLine);
                     }
 
+                    //print regular comments
                     outputBox.AppendText(Environment.NewLine + "Comment Replies:" + Environment.NewLine);
 
                     foreach (var item in greatComQ)
@@ -459,13 +487,17 @@ namespace wolfPack_Assign3
                     endQueryMsg();
 
             }
-            else
+            else //else user didnt actually click anything, show error msg
             {
                 outputBox.AppendText("Please make sure a radio button is selected.\n");
                 return;
             }
         }
 
+        // Method:  dateQuery_Click
+        // Purpose: Handles the date query based on the date selected to show all posts from that specific date
+        // Params: object sender, EventArgs e
+        // Returns: N/A
         private void dateQuery_Click(object sender, EventArgs e)
         {
             outputBox.Clear();
@@ -500,41 +532,47 @@ namespace wolfPack_Assign3
 
         }
 
+        // Method:  userPostQuery_Click
+        // Purpose: queries for all the subreddits posted to by a specific user and displays the results
+        // Params: object sender, EventArgs e
+        // Returns: N/A
         private void userPostQuery_Click(object sender, EventArgs e)
         {
             outputBox.Clear();
          
+            //make sure a user is actually selected, else error msg
             if(userComboBox.SelectedIndex != -1)
             {
+                //queries below
                 var subSelectedQ =
                     from N in postMap.Values
                     where N.AuthorId == nameToId(userComboBox.Items[userComboBox.SelectedIndex].ToString(), 1)
                     select N.SubHome;
 
+                //keep running list of all subs so we don't store duplicates
                 HashSet<uint> uniqueSubs = new HashSet<uint>();
 
                 outputBox.AppendText("Subreddits Posted To By: "+ userComboBox.Items[userComboBox.SelectedIndex].ToString() + Environment.NewLine);
                 outputBox.AppendText("--------------------------------------" + Environment.NewLine);
                 var myQuery = (from Q in subSelectedQ select Q).ToList();
 
-
+                //print subreddits
                 foreach (var item in subSelectedQ)
                 {
                     uniqueSubs.Add(item);
                 }
 
 
-
+                //if user hasnt posted in any subreddit, show empty msg
                 if (myQuery.Count < 1)
                 {
                     outputBox.Clear();
                     outputBox.AppendText("No entries for this specific user. " + Environment.NewLine);
                 }
                 else
-                {
+                {   //print out all the subreddits they've posted in
                     foreach(var item in uniqueSubs)
                     {
-
                         outputBox.AppendText(String.Format("{0, 30}", subMap[item].Name));
                         outputBox.AppendText(Environment.NewLine);
                     }
@@ -542,12 +580,14 @@ namespace wolfPack_Assign3
                     endQueryMsg();
                 }
             }
-            else
+            else //error msg 
             {
                 outputBox.AppendText("Please select the user you would like to see subreddits for. " + Environment.NewLine);
 
             }
         }
+        
+
         //awardQuery_Click
         //params: object sender, EventArgs e
         //purpose: handles award queries based on number of checkboxes selected to output the number of silver, gold, or platinum awards in a single subreddit
