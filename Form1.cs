@@ -959,36 +959,36 @@ namespace wolfPack_Assign3
         {
             outputBox.Clear();
             var lowPostQuery =
-                from N in usersMap.Values
-                group N by N.Id into postGroup
+                from N in postMap.Values
+                group N by N.AuthorId into postGroup
                 orderby Name
                 select new
                 {
                     Name = postGroup.Key,
-                    lowScore = postGroup.Min(x => x.PostScore),
+                    lowScore = postGroup.Min(x => x.Score),
             
                 };
 
            var highPostQuery =
-            from N in usersMap.Values
-            group N by N.Id into postGroup
-            orderby Name
+                from N in postMap.Values
+                group N by N.AuthorId into postGroup
+                orderby Name
             select new
             {
                 Name = postGroup.Key,
-                highScore= postGroup.Max(x => x.PostScore),
+                highScore= postGroup.Max(x => x.Score),
 
             };
 
 
             var avgPostQuery =
-             from N in usersMap.Values
-            group N by N.Id into postGroup
-            orderby Name
+                from N in postMap.Values
+                group N by N.AuthorId into postGroup
+                orderby Name
             select new
             {
                 Name = postGroup.Key,
-                avgScore= postGroup.Average(x => x.PostScore),
+                avgScore= postGroup.Average(x => x.Score),
 
              };
 
