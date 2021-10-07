@@ -571,7 +571,7 @@ namespace wolfPack_Assign3
                 }
                 else
                 {   //print out all the subreddits they've posted in
-                    foreach(var item in uniqueSubs)
+                    foreach(var item in uniqueSubs.Reverse())
                     {
                         outputBox.AppendText(String.Format("{0, 30}", subMap[item].Name));
                         outputBox.AppendText(Environment.NewLine);
