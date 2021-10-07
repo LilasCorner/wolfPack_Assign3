@@ -940,7 +940,7 @@ namespace wolfPack_Assign3
 
                 foreach (var item in avgSubQuery)
                 {
-                    output = String.Format("{0, 40} {1,5} {2:0.00}", subMap[item.Name].Name, dash, Math.Round((Double)item.avgScore, 2));
+                    output = String.Format("{0, 30} {1,5} {2:0.00}", subMap[item.Name].Name, dash, Math.Round((Double)item.avgScore, 2));
                     outputBox.AppendText(output);
                     outputBox.AppendText(Environment.NewLine);
                 }
@@ -956,7 +956,7 @@ namespace wolfPack_Assign3
         {
             string dash = "--";
 
-            return String.Format("{0, 40} {1,5} {2, 10}", title, dash, score);
+            return String.Format("{0, 30} {1,5} {2, 10}", title, dash, score);
         }
 
         private void userQuery_Click(object sender, EventArgs e)
@@ -1028,7 +1028,7 @@ namespace wolfPack_Assign3
 
                 foreach (var item in avgPostQuery)
                 {
-                    output = String.Format("{0, 40} {1,5} {2:0.00}", usersMap[Convert.ToUInt32(item.Name)].Name, dash, Math.Round((Double)item.avgScore, 2));
+                    output = String.Format("{0, 30} {1,5} {2:0.00}", usersMap[Convert.ToUInt32(item.Name)].Name, dash, Math.Round((Double)item.avgScore, 2));
                     outputBox.AppendText(output);
                     outputBox.AppendText(Environment.NewLine);
                 }
@@ -1039,11 +1039,15 @@ namespace wolfPack_Assign3
 
         }
 
+        //usersToStringTiny
+        //params: string title: the username, int score: user's score
+        //purpose: formats the user's information in a concatenatated manner
+        //returns: formatted string
         public string usersToStringTiny(string title, int score)
         {
             string dash = "--";
 
-            return String.Format("{0, 40} {1,5} {2, 10}", title, dash, score);
+            return String.Format("{0, 30} {1,5} {2, 10}", title, dash, score);
         }
     }
 
