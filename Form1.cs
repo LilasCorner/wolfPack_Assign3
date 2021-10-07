@@ -469,11 +469,11 @@ namespace wolfPack_Assign3
         private void dateQuery_Click(object sender, EventArgs e)
         {
             outputBox.Clear();
-
+            string currentDate = Convert.ToDateTime(specificDatePicker.Value.Date).ToShortDateString();
 
             var dateSelected =
                 from N in postMap.Values
-                where N.TimeStamp.ToShortDateString() == Convert.ToDateTime(specificDatePicker.Value.Date).ToShortDateString()
+                where N.TimeStamp.ToShortDateString() == currentDate
                 select N;
 
 
@@ -488,7 +488,10 @@ namespace wolfPack_Assign3
 
             if (myQuery.Count < 1)
             {
-                outputBox.AppendText("No entries for this specific date. " + Environment.NewLine);
+                outputBox.AppendText("All posts from: "+ currentDate + Environment.NewLine);
+                outputBox.AppendText("----------------------------------------------" + Environment.NewLine);
+                outputBox.AppendText("Wow, such empty!");
+
             }
             else
             {
@@ -545,7 +548,10 @@ namespace wolfPack_Assign3
 
             }
         }
-
+        //awardQuery_Click
+        //params: object sender, EventArgs e
+        //purpose: handles award queries based on number of checkboxes selected to output the number of silver, gold, or platinum awards in a single subreddit
+        //returns: N/A
         private void awardQuery_Click(object sender, EventArgs e)
         {
             outputBox.Clear();
@@ -557,60 +563,62 @@ namespace wolfPack_Assign3
            
             int print = 0; 
 
+            //if no checkbox is selected or they forgot to select a subreddit, error msg
             if ((!silverAward.Checked && !goldAward.Checked && !platAward.Checked) || subComboBox.SelectedIndex == -1)
             {
                 outputBox.AppendText("Please select an award type, and the subreddit you'd like to see results for. " + Environment.NewLine);
                 return;
             }
 
-                if (silverAward.Checked)
-                {
-                    print = 1;
-                    sflag = true;
-                    intro += "Silver";
+            //determine how many check boxes selected and append it's award name to the intro
+            if (silverAward.Checked)
+            {
+                print = 1;
+                sflag = true;
+                intro += "Silver";
                 
-                }
-                if (goldAward.Checked)
+            }
+            if (goldAward.Checked)
+            {
+                gflag = true;
+                if (sflag && !platAward.Checked)
                 {
-                    gflag = true;
-                    if (sflag && !platAward.Checked)
-                    {
-                        intro += ", and Gold";
-                        print = 4;
-                    }
-                    else if (sflag && platAward.Checked)
-                    {
-                        intro += ", Gold";
-                    }
-                    else
-                    {
-                        print = 2;
-                        intro += "Gold";
-                    }
+                    intro += ", and Gold";
+                    print = 4;
                 }
-                if (platAward.Checked)
+                else if (sflag && platAward.Checked)
                 {
-                pflag = true;
-                    if (sflag || gflag)
+                    intro += ", Gold";
+                }
+                else
+                {
+                    print = 2;
+                    intro += "Gold";
+                }
+            }
+            if (platAward.Checked)
+            {
+            pflag = true;
+                if (sflag || gflag)
+                {
+                    intro += ", and Platinum";
+                    if(sflag && !gflag)
                     {
-                        intro += ", and Platinum";
-                        if(sflag && !gflag)
-                        {
-                            print = 5;
-                        }
-                        if (!sflag && gflag)
-                        {
-                            print = 6;
-                        }
+                        print = 5;
                     }
-                    else
+                    if (!sflag && gflag)
                     {
-                        intro += "Platinum";
-                        print = 3;
+                        print = 6;
                     }
                 }
+                else
+                {
+                    intro += "Platinum";
+                    print = 3;
+                }
+            }
 
-
+            //if all checkboxes clicked case
             if(sflag && gflag && pflag)
             {
                 print = 7;
@@ -618,10 +626,11 @@ namespace wolfPack_Assign3
 
             uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
 
-
+            //print header line
             outputBox.AppendText(intro + " awards for the " + subMap[sub].Name + " Subreddit:" + Environment.NewLine);
             outputBox.AppendText("--------------------------------------" + Environment.NewLine);
 
+            //switch case depending on num check boxes selected to print proper output
             switch (print) //switch based on how many checkboxes were checked
                 {
                     case 1: //silver
@@ -672,11 +681,17 @@ namespace wolfPack_Assign3
         }
 
 
-
+        //printSilver
+        //params: N/A
+        //purpose: handles silver queries based on the checkboxes selected to produce the number of silver awards granted to a subreddit
+        //returns: N/A
         public void printSilver()
         {
+            //storing subreddit into smaller variable for ease of reading
             uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
 
+
+            //queries below
             var sPostQ =
                     from N in postMap.Values
                     where N.SubHome == sub
@@ -695,6 +710,8 @@ namespace wolfPack_Assign3
                 from L in M.CommentReplies
                 select L[0];
 
+
+            //if all subreddit selected, edit queries accordinly
             if (subMap[sub].Name.Equals("all"))
             {
                 sPostQ =
@@ -715,6 +732,7 @@ namespace wolfPack_Assign3
 
             int totals = 0;
 
+            //printing awards in posts
             foreach(var item in sPostQ)
             {
                 totals += item;
@@ -723,6 +741,7 @@ namespace wolfPack_Assign3
             outputBox.AppendText("\t Silver awards in Posts: " + totals + Environment.NewLine);
             totals = 0;
 
+            //printing awards in top comments
             foreach (var item in sTopQ)
             {
                 totals += item;
@@ -731,6 +750,7 @@ namespace wolfPack_Assign3
 
             totals = 0;
 
+            //printing awards in regular comments
             foreach (var item in sComQ)
             {
                 totals += item;
@@ -739,10 +759,16 @@ namespace wolfPack_Assign3
 
         }
 
+        //printGold
+        //params: N/A
+        //purpose: handles gold queries based on the checkboxes selected to produce the number of gold awards granted to a subreddit
+        //returns: N/A
         public void printGold()
         {
+            //storing subreddit's into smaller variable for ease of reading
             uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
 
+            //queries  below
             var gPostQ =
                 from N in postMap.Values
                 where N.SubHome == sub
@@ -761,6 +787,7 @@ namespace wolfPack_Assign3
                 from L in M.CommentReplies
                 select L[1];
 
+            //check if all subreddit selected, change queries accordingly
             if (subMap[sub].Name.Equals("all"))
             {
                 gPostQ =
@@ -780,7 +807,7 @@ namespace wolfPack_Assign3
             }
 
             int totals = 0;
-
+            //print awards in posts
             foreach (var item in gPostQ)
             {
                 totals += item;
@@ -789,6 +816,7 @@ namespace wolfPack_Assign3
             outputBox.AppendText("\t Gold awards in Posts: " + totals + Environment.NewLine);
             totals = 0;
 
+            //print awards for top comments
             foreach (var item in gTopQ)
             {
                
@@ -798,6 +826,7 @@ namespace wolfPack_Assign3
 
             totals = 0;
 
+            //print awards for regular comments
             foreach (var item in gComQ)
             {
                 totals += item;
@@ -808,12 +837,16 @@ namespace wolfPack_Assign3
 
         }
 
-
+        //printPlat
+        //params: N/A
+        //purpose: handles platinum queries based on the checkboxes selected to produce the number of platinum awards granted to a subreddit
+        //returns: N/A
         public void printPlat()
         {
+            //store subreddit into smaller variable for ease of reading
             uint sub = nameToId(subComboBox.Items[subComboBox.SelectedIndex].ToString(), 2);
 
-            
+            //queries below
             var pPostQ =
                 from N in postMap.Values
                 where N.SubHome == sub
@@ -832,6 +865,7 @@ namespace wolfPack_Assign3
                 from L in M.CommentReplies
                 select L[2];
 
+            //check if all subreddits selected, change queries accordingly
             if (subMap[sub].Name.Equals("all"))
             {
                  pPostQ =
@@ -852,6 +886,7 @@ namespace wolfPack_Assign3
 
             int totals = 0;
 
+            //print awards for posts
             foreach (var item in pPostQ)
             {
                 totals += item;
@@ -860,6 +895,7 @@ namespace wolfPack_Assign3
             outputBox.AppendText("\t Plat awards in Posts: " + totals + Environment.NewLine);
             totals = 0;
 
+            //print awards for top comments
             foreach (var item in pTopQ)
             {
                 totals += item;
@@ -868,6 +904,7 @@ namespace wolfPack_Assign3
 
             totals = 0;
 
+            //print awards for regular comments
             foreach (var item in pComQ)
             {
                 totals += item;
@@ -877,11 +914,16 @@ namespace wolfPack_Assign3
 
         }
 
+
+        //subQuery_Click
+        //params: object sender, EventArgs e
+        //purpose: handles query when user clicks the "Post score by Subreddit" button based on radio button selected
+        //returns: N/A
         private void subQuery_Click(object sender, EventArgs e)
         {
             outputBox.Clear();
 
-
+            //queries defined below
             var lowSubQuery =
                 from N in postMap.Values
                 group N by N.SubHome into subGroup
@@ -912,12 +954,14 @@ namespace wolfPack_Assign3
                     avgScore = subGroup.Average(x => x.Score),
                 };
 
+            //if no radio button clicked, error msg shown
             if (!lowSub.Checked && !highSub.Checked && !avgSub.Checked)
             {
                 outputBox.AppendText("Please select an postScore range. " + Environment.NewLine);
                 return;
             }
 
+            //if low radio button checked
             if (lowSub.Checked)
             {
                 outputBox.AppendText("Lowest Scored Posts For Each Subreddit:" + Environment.NewLine);
@@ -927,6 +971,8 @@ namespace wolfPack_Assign3
                     outputBox.AppendText(subToStringTiny(subMap[item.Name].Name,Convert.ToInt32(item.lowScore)) + Environment.NewLine);
                 }
             }
+
+            //if high radio button checked
             if(highSub.Checked)
             {
                 outputBox.AppendText("Highest Scored Posts For Each Subreddit:" + Environment.NewLine);
@@ -937,6 +983,8 @@ namespace wolfPack_Assign3
                 }
             }
 
+
+            //if avg radio button checked
             if(avgSub.Checked)
             {
 
@@ -961,6 +1009,10 @@ namespace wolfPack_Assign3
         }
 
 
+        //subToStringTiny
+        //params: string title: the subreddit title, int score: subreddits' score
+        //purpose: formats the subreddits' score information in a concatenatated manner
+        //returns: formatted string
         public string subToStringTiny(string title,int score)
         {
             string dash = "--";
@@ -968,9 +1020,16 @@ namespace wolfPack_Assign3
             return String.Format("{0, 30} {1,5} {2, 10}", title, dash, score);
         }
 
+
+        //userQuery_Click
+        //params: object sender, EventArgs e
+        //purpose: handles query when user clicks the "Post score by user" button based on radio button selected
+        //returns: N/A
         private void userQuery_Click(object sender, EventArgs e)
         {
             outputBox.Clear();
+
+            //queries defined below
             var lowPostQuery =
                 from N in postMap.Values
                 group N by N.AuthorId into postGroup
@@ -1005,12 +1064,14 @@ namespace wolfPack_Assign3
 
              };
 
+            //if no radio buttons clicked, send error message and quit
             if (!lowUser.Checked && !highUser.Checked && !avgUser.Checked)
             {
                 outputBox.AppendText("Please select an postScore range. " + Environment.NewLine);
                 return;
             }
 
+            //lowest button checked
             if (lowUser.Checked)
             {
                 outputBox.AppendText("Lowest Scored Posts For Each User:" + Environment.NewLine);
@@ -1023,6 +1084,7 @@ namespace wolfPack_Assign3
 
             }
 
+            //highest button checked
             if (highUser.Checked)
             {
                 outputBox.AppendText("Highest Scored Posts For Each User:" + Environment.NewLine);
@@ -1034,6 +1096,8 @@ namespace wolfPack_Assign3
                 endQueryMsg();
     
             }
+
+            //average button checked
             if(avgUser.Checked)
             {
                 string output = "";
