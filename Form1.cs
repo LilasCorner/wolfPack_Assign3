@@ -717,7 +717,6 @@ namespace wolfPack_Assign3
 
             foreach(var item in sPostQ)
             {
-                MessageBox.Show(item.ToString());
                 totals += item;
             }
 
@@ -936,9 +935,14 @@ namespace wolfPack_Assign3
 
             if(avgSub.Checked)
             {
-                foreach(var item in avgSubQuery)
+                string dash = "--";
+                string output = "";
+
+                foreach (var item in avgSubQuery)
                 {
-                    outputBox.AppendText(subToStringTiny(subMap[item.Name].Name,Convert.ToInt32(item.avgScore)) + Environment.NewLine);
+                    output = String.Format("{0, 40} {1,5} {2:0.00}", subMap[item.Name].Name, dash, Math.Round((Double)item.avgScore, 2));
+                    outputBox.AppendText(output);
+                    outputBox.AppendText(Environment.NewLine);
                 }
             }
 
@@ -1019,9 +1023,14 @@ namespace wolfPack_Assign3
             }
             if(avgUser.Checked)
             {
-                foreach(var item in avgPostQuery)
+                string output = "";
+                string dash = "--";
+
+                foreach (var item in avgPostQuery)
                 {
-                    outputBox.AppendText(usersToStringTiny(usersMap[Convert.ToUInt32(item.Name)].Name, Convert.ToInt32(item.avgScore)) + Environment.NewLine);
+                    output = String.Format("{0, 40} {1,5} {2:0.00}", usersMap[Convert.ToUInt32(item.Name)].Name, dash, Math.Round((Double)item.avgScore, 2));
+                    outputBox.AppendText(output);
+                    outputBox.AppendText(Environment.NewLine);
                 }
                 endQueryMsg();
             }
